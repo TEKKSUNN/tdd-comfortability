@@ -1,11 +1,15 @@
 import { capitalize, reverseString } from "./index";
 
+function testCallback(wordObject, callbackfn) {
+  return expect(callbackfn(wordObject.test)).toBe(wordObject.result);
+}
+
 function testCapitalize(wordObject) {
-  return expect(capitalize(wordObject.test)).toBe(wordObject.result);
+  return testCallback(wordObject, capitalize);
 }
 
 function testReverseString(wordObject) {
-  return expect(reverseString(wordObject.test)).toBe(wordObject.result);
+  return testCallback(wordObject, reverseString);
 }
 
 it('Capitalize works on lowercased words', () => {
