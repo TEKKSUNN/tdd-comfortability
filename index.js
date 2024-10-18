@@ -3,5 +3,5 @@ export function capitalize(string) {
 }
 
 export function reverseString(string) {
-  return;
+  return Array.from(string).reverse().join('');
 }
