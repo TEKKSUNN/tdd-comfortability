@@ -1,4 +1,4 @@
-import { capitalize, reverseString } from "./index";
+import { calculator, capitalize, reverseString } from "./index";
 
 function testCallback(wordObject, callbackfn) {
   expect(callbackfn(wordObject.test)).toBe(wordObject.result);
@@ -10,6 +10,26 @@ function testCapitalize(wordObject) {
 
 function testReverseString(wordObject) {
   testCallback(wordObject, reverseString);
+}
+
+function testNumCallback(callbackfn, numObject) {
+  expect(callbackfn(...numObject.test)).toBe(numObject.result);
+}
+
+function testCalcAdd(numObject) {
+  testNumCallback(calculator.add, numObject);
+}
+
+function testCalcSubtract(numObject) {
+  testNumCallback(calculator.subtract, numObject);
+}
+
+function testCalcMultiply(numObject) {
+  testNumCallback(calculator.multiply, numObject);
+}
+
+function testCalcDivide(numObject) {
+  testNumCallback(calculator.divide, numObject);
 }
 
 it('Capitalize works on lowercased words', () => {
@@ -64,4 +84,40 @@ it('reverseString works on reversed words', () => {
     {'test': 'azziP', 'result': 'Pizza'},
   ];
   testCases.forEach(testReverseString);
+});
+
+it('calculator.add works normally', () => {
+  const testCases = [
+    {'test': [1, 2], 'result': 3},
+    {'test': [100, 312], 'result': 412},
+    {'test': [1208, 129], 'result': 1337},
+  ];
+  testCases.forEach(testCalcAdd);
+});
+
+it('calculator.subtract works normally', () => {
+  const testCases = [
+    {'test': [1, 2], 'result': -1},
+    {'test': [100, 312], 'result': -212},
+    {'test': [1208, 129], 'result': 1079},
+  ];
+  testCases.forEach(testCalcSubtract);
+});
+
+it('calculator.divide works normally', () => {
+  const testCases = [
+    {'test': [10, 2], 'result': 5},
+    {'test': [64, 8], 'result': 8},
+    {'test': [144, 12], 'result': 12},
+  ];
+  testCases.forEach(testCalcDivide);
+});
+
+it('calculator.multiply works normally', () => {
+  const testCases = [
+    {'test': [10, 2], 'result': 20},
+    {'test': [64, 8], 'result': 512},
+    {'test': [144, 12], 'result': 1728},
+  ];
+  testCases.forEach(testCalcMultiply);
 });
