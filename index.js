@@ -1,3 +1,5 @@
+import CaesarCipher from "@dunkelhaiser/caesar-cipher";
+
 export function capitalize(string) {
   return string[0].toUpperCase() + string.slice(1);
 }
@@ -22,4 +24,6 @@ export class calculator {
   }
 }
 
-export function caesarCipher(string) {}
+export function caesarCipher(string) {
+  return CaesarCipher.encrypt(string, 3);
+}
