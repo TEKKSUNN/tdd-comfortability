@@ -1,4 +1,4 @@
-import { calculator, capitalize, reverseString } from "./index";
+import { caesarCipher, calculator, capitalize, reverseString } from "./index";
 
 function testCallback(wordObject, callbackfn) {
   expect(callbackfn(wordObject.test)).toBe(wordObject.result);
@@ -30,6 +30,10 @@ function testCalcMultiply(numObject) {
 
 function testCalcDivide(numObject) {
   testNumCallback(calculator.divide, numObject);
+}
+
+function testCaesarCipher(wordObject) {
+  testCallback(wordObject, caesarCipher);
 }
 
 it('Capitalize works on lowercased words', () => {
@@ -120,4 +124,13 @@ it('calculator.multiply works normally', () => {
     {'test': [144, 12], 'result': 1728},
   ];
   testCases.forEach(testCalcMultiply);
+});
+
+it('caesarCipher works as intended', () => {
+  const testCases = [
+    {'test': 'Hello, World!', 'result': 'Khoor, Zruog!'},
+    {'test': 'Nein', 'result': 'Qhlq'},
+    {'test': 'Shut Up!', 'result': 'Vkxw Xs!'},
+  ]
+  testCases.forEach(testCaesarCipher);
 });
