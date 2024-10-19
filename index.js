@@ -27,3 +27,5 @@ export class calculator {
 export function caesarCipher(string) {
   return CaesarCipher.encrypt(string, 3);
 }
+
+export function analyzeArray(array) {}
