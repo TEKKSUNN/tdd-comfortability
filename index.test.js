@@ -1,7 +1,11 @@
-import { caesarCipher, calculator, capitalize, reverseString } from "./index";
+import { analyzeArray, caesarCipher, calculator, capitalize, reverseString } from "./index";
 
 function testCallback(wordObject, callbackfn) {
   expect(callbackfn(wordObject.test)).toBe(wordObject.result);
+}
+
+function testCallbackStrict(wordObject, callbackfn) {
+  expect(callbackfn(wordObject.test)).toStrictEqual(wordObject.result);
 }
 
 function testCapitalize(wordObject) {
@@ -34,6 +38,10 @@ function testCalcDivide(numObject) {
 
 function testCaesarCipher(wordObject) {
   testCallback(wordObject, caesarCipher);
+}
+
+function testAnalyzeArray(arrayTestCase) {
+  testCallbackStrict(arrayTestCase, analyzeArray);
 }
 
 it('Capitalize works on lowercased words', () => {
@@ -133,4 +141,37 @@ it('caesarCipher works as intended', () => {
     {'test': 'Shut Up!', 'result': 'Vkxw Xs!'},
   ]
   testCases.forEach(testCaesarCipher);
+});
+
+it('analyzeArray gives correct objects', () => {
+  const testCases = [
+    {
+      'test': [1,8,3,4,2,6],
+      'result': {
+        average: 4,
+        min: 1,
+        max: 8,
+        length: 6
+      }
+    },
+    {
+      'test': [10, 20, 30, 40, 50, 60],
+      'result': {
+        average: 35,
+        min: 10,
+        max: 60,
+        length: 6
+      }
+    },
+    {
+      'test': [5, 10, 15, 20, 25, 30, 35],
+      'result': {
+        average: 20,
+        min: 5,
+        max: 35,
+        length: 7
+      }
+    },
+  ]
+  testCases.forEach(testAnalyzeArray);
 });
