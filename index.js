@@ -21,3 +21,5 @@ export class calculator {
     return num1 / num2;
   }
 }
+
+export function caesarCipher(string) {}
